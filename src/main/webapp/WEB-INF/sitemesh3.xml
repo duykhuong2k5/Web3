@@ -1,0 +1,13 @@
+<sitemesh>
+    <!-- Layout mặc định cho toàn site -->
+    <mapping path="/*" name="web" decorator="/WEB-INF/decorators/web.jsp"/>
+
+    <!-- Layout cho admin -->
+    <mapping path="/admin/*" name="admin" decorator="/WEB-INF/decorators/admin.jsp"/>
+
+    <!-- Layout riêng cho login -->
+    <mapping path="/login*" name="login" decorator="/WEB-INF/decorators/login.jsp"/>
+
+    <!-- Loại trừ API khỏi decorator -->
+    <mapping path="/api/*" exclude="true"/>
+</sitemesh>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- Quét package để tìm @Controller -->
+    <context:component-scan base-package="vn.iot.baitap05.controller"/>
+
+    <!-- Bật annotation-driven (xử lý @RequestMapping, @ResponseBody, @Valid, …) -->
+    <mvc:annotation-driven/>
+
+    <!-- Cho phép load tài nguyên tĩnh (css, js, images) -->
+    <mvc:resources mapping="/assets/**" location="/assets/"/>
+    <mvc:resources mapping="/uploads/**" location="/uploads/"/>
+
+    <!-- View Resolver: tìm JSP trong /WEB-INF/views/ -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- MultipartResolver để hỗ trợ upload file -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="20971520"/> <!-- 20MB -->
+        <property name="maxUploadSizePerFile" value="5242880"/> <!-- 5MB -->
+    </bean>
+
+</beans>
